@@ -20,6 +20,7 @@
     "@solana/wallet-adapter-wallets": "^0.17.2",
     "@solana/web3.js": "^1.25.0",
     "craco-alias": "^3.0.1",
+    "create-vite": "^4.4.1",
     "lodash-es": "^4.17.21",
     "md5": "^2.3.0",
     "react": "^17.0.2",
@@ -36,10 +37,10 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.9",
+    "@vitejs/plugin-react": "1.1.1",
     "autoprefixer": "^9",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14",
-    "@vitejs/plugin-react": "1.1.1",
     "vite": "2.7.0"
   },
   "eslintConfig": {
