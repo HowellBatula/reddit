@@ -17,14 +17,17 @@
 body {
   height: 100vh;
   overflow: hidden;
+  color: #bd310f;
 }
 
 .dashboard-main {
   min-height: calc(100vh - 56px);
   padding-top: 56px;
+  color: #bd310f;
 }
 
 .dashboard-aside {
+  color: #bd310f;
   position: fixed;
   min-width: 400px;
   min-height: calc(100vh - 5rem);

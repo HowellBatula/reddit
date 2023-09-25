@@ -6,33 +6,13 @@ import { PostForm } from "src/components/PostForm"
 import { useBlog } from "src/context/Blog"
 import { useHistory } from 'react-router-dom'
 
-
-
 export const Dashboard = () => {
   const history = useHistory()
   const [connecting, setConnecting] = useState(false)
-  const { select } = useWallet()
+  const { connected, select } = useWallet()
   const [postTitle, setPostTitle] = useState("")
   const [postContent, setPostContent] = useState("")
-
-  // Static Data
-  const user = {
-    name: "Random Robot",
-    avatar: "https://avatarfiles.alphacoders.com/283/thumb-283778.jpg",
-  }
-  const connected = true
-  const posts = []
-
-  const createPost = () => {
-
-  }
-
-  const showModal = false
-  const setShowModal = () => {
-
-  }
-  /////////////////
-
+  const { user, initialized, initUser, showModal, setShowModal, createPost, posts } = useBlog()
   const onConnect = () => {
     setConnecting(true)
     select(PhantomWalletName)
@@ -51,17 +31,11 @@ export const Dashboard = () => {
           <h2 className="text-2xl font-bold">
             <div className="bg-clip-text bg-gradient-to-br from-indigo-300 colorpink"
             >
-              Onaki
+              Solana Reddit
             </div>
           </h2>
           {connected ? (
             <div className="flex items-center">
-              <p className=" font-bold text-sm ml-2 capitalize underlinepink">
-                Home
-              </p>
-              <p className=" font-bold text-sm ml-2 capitalize mr-4 underlinepink">
-                Blog
-              </p>
               <img
                 src={user?.avatar}
                 alt="avatar"
@@ -70,14 +44,24 @@ export const Dashboard = () => {
               <p className=" font-bold text-sm ml-2 capitalize">
                 {user?.name}
               </p>
-              <Button
-                className="ml-3 mr-2"
-                onClick={() => {
-                  setShowModal(true)
-                }}
-              >
-                Create Post
-              </Button>
+              {initialized ? (
+                <Button
+                  className="ml-3 mr-2"
+                  onClick={() => {
+                    setShowModal(true)
+                  }}
+                >
+                  Create Post
+                </Button>) : (<Button
+                  className="ml-3 mr-2"
+                  onClick={() => {
+                    initUser()
+                  }}
+                >
+                  Initialized User
+                </Button>)}
+
+
             </div>
           ) : (
             <Button
@@ -115,17 +99,15 @@ export const Dashboard = () => {
               <div
                 className="best-post-image"
                 style={{
-                  backgroundImage: `url("https://user-images.githubusercontent.com/62637513/184338364-a14b7272-d1dc-49f3-9f43-3ac37dacbe85.png")`,
+                  backgroundImage: `url("https://imgs.hipertextual.com/wp-content/uploads/2021/08/reddit-2.png")`,
                 }}
               ></div>
               <div className="best-post-content">
-                <div className="best-post-content-cat">December 2, 2021<span className="dot"> </span>Blog</div>
+                <div className="best-post-content-cat">Solana Developer <span className="dot"> </span>Blog</div>
                 <div className="best-post-content-title">
-                  Lorem ipsum dolor sit amet, consectetur
-                </div>
+                  SOLANA REDDIT                </div>
                 <div className="best-post-content-sub">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
+                  A PROJECT FOR SOLANA BOOTCAMP                         </div>
               </div>
             </article>
 
@@ -142,12 +124,12 @@ export const Dashboard = () => {
                       <div
                         className="post__card__image-2"
                         style={{
-                          backgroundImage: `url("https://user-images.githubusercontent.com/62637513/184338539-9cdbdc58-1e72-4c48-8203-0b7ec23d3eb0.png")`,
+                          backgroundImage: `url("https://media.wired.com/photos/5a55b7eb091d162e40e4b202/191:100/w_1280,c_limit/reddit-alien-red.jpg")`,
                         }}
                       ></div>
                       <div>
                         <div className="post__card_meta-2">
-                          <div className="post__card_cat">December 2, 2021<span className="dot"> </span>{item.account.title} </div>
+                          <div className="post__card_cat"><span className="dot"> </span>{item.account.title} </div>
                           <p className="post__card_alttitle-2">
                             {item.account.content}
                           </p>
