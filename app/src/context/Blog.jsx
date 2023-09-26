@@ -56,35 +56,42 @@ export const BlogProvider = ({ children }) => {
     const start = async () => {
       if (program && publicKey) {
         try {
-          // check if there's a user
-          setTransactionPending(true)
-          const [userPda] = await findProgramAddressSync([utf8.encode('user'), publicKey.toBuffer()], program.programId)
-          const user = await program.account.userAccount.fetch(userPda)
-          if (user) {
-            setInitialized(true)
-            setUser(user)
-            setlastPostId(user.lastPostId)
+          // Check if there's a user
+          setTransactionPending(true);
+          const [userPda] = await findProgramAddressSync(
+            [utf8.encode('user'), publicKey.toBuffer()],
+            program.programId
+          );
 
-            const postAccounts = await program.account.postAccount.all()
-            setPosts(postAccounts)
-            console.log(postAccounts)
+          console.log("User Program Address:", userPda.toString());
+
+          const user = await program.account.userAccount.fetch(userPda);
+          if (user) {
+            setInitialized(true);
+            setUser(user);
+            setlastPostId(user.lastPostId);
+
+            const postAccounts = await program.account.postAccount.all();
+            setPosts(postAccounts);
+            console.log("User Data:", user);
+            console.log("Post Accounts:", postAccounts);
           } else {
             // Handle the case when there's no user
+            console.log("No User Found");
             setInitialized(true);
           }
         } catch (err) {
-          console.log("No User")
-          // Handle the case when there's no user
-          setInitialized(true);
+          console.error("Error while fetching user data:", err);
+          // Handle the error or log it for further investigation
         } finally {
-
+          setTransactionPending(false);
         }
       }
-    }
+    };
 
-    start()
+    start();
+  }, [program, publicKey, transactionPending]); // Include transactionPending in the dependency array
 
-  }, [program, publicKey, transactionPending])
 
   const initUser = async () => {
     if (program && publicKey) {
