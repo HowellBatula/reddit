@@ -58,7 +58,6 @@ export const BlogProvider = ({ children }) => {
       if (program && publicKey) {
         try {
           // Check if there's a user
-          setTransactionPending(true);
           const [userPda] = await findProgramAddressSync(
             [utf8.encode('user'), publicKey.toBuffer()],
             program.programId
@@ -85,7 +84,7 @@ export const BlogProvider = ({ children }) => {
           console.error("Error while fetching user data:", err);
           // Handle the error or log it for further investigation
         } finally {
-          setTransactionPending(false);
+
         }
       }
     };
