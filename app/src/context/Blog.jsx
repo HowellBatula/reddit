@@ -15,6 +15,8 @@ import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pub
 import { utf8 } from '@project-serum/anchor/dist/cjs/utils/bytes'
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { async } from 'rxjs';
+import { Buffer } from 'buffer';
+
 
 const PROGRAM_KEY = new PublicKey(idl.metadata.address);
 const BlogContext = createContext();
@@ -47,7 +49,6 @@ export const BlogProvider = ({ children }) => {
     if (anchorWallet) {
       const provider = new anchor.AnchorProvider(connection, anchorWallet, anchor.AnchorProvider.defaultOptions())
       return new anchor.Program(idl, PROGRAM_KEY, provider)
-
     }
 
   }, [connection, anchorWallet])
@@ -90,7 +91,7 @@ export const BlogProvider = ({ children }) => {
     };
 
     start();
-  }, [program, publicKey, transactionPending]); // Include transactionPending in the dependency array
+  }, [program, publicKey, transactionPending]);
 
 
   const initUser = async () => {
