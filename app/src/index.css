@@ -5,7 +5,7 @@
 /*  */
 
 .background-color {
-  background: #1b012b;
+  background: #ffffff;
   padding: 10px;
 }
 
@@ -15,15 +15,26 @@
 }
 
 body {
+  text-align: center;
   height: 100vh;
   overflow: hidden;
   color: #bd310f;
 }
 
 .dashboard-main {
+  text-align: center;
+  margin: 0 auto;
+  /* Center the content horizontally */
   min-height: calc(100vh - 56px);
   padding-top: 56px;
   color: #bd310f;
+  display: flex;
+  justify-content: center;
+  /* Center content vertically */
+  align-items: center;
+  /* Center content horizontally */
+  max-width: 2000px;
+  /* Set a maximum width to make it wider */
 }
 
 .dashboard-aside {
@@ -34,4 +45,5 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: 1rem;
+  /* You can adjust the positioning of .dashboard-aside as needed */
 }

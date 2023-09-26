@@ -47,14 +47,6 @@ export const FullPost = () => {
     <article className="hentry background-color">
 
       <h1 className="entry-title">{post?.title}</h1>
-      <div className="entry-meta">
-        <p>
-          <span className="author">
-            <a href="#">SOLANA BLOCKCHAIN</a>
-          </span>{" "}
-          <span className="date">creator: Howell Batula</span>
-        </p>
-      </div>
       <div className="entry-content">
         <p>{post?.content}</p>
       </div>

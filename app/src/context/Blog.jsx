@@ -57,6 +57,7 @@ export const BlogProvider = ({ children }) => {
       if (program && publicKey) {
         try {
           // check if there's a user
+          setTransactionPending(true)
           const [userPda] = await findProgramAddressSync([utf8.encode('user'), publicKey.toBuffer()], program.programId)
           const user = await program.account.userAccount.fetch(userPda)
           if (user) {
@@ -72,9 +73,9 @@ export const BlogProvider = ({ children }) => {
           console.log("No User")
           setInitialized(false)
         } finally {
+          setTransactionPending(true)
         }
       }
-      // If it theres a user it fetch the post 
     }
 
     start()

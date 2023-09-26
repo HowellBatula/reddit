@@ -92,7 +92,7 @@ export const Dashboard = () => {
       </header>
       <main className="dashboard-main pb-4 container flex relative">
         <div className="pt-3">
-          {/* <h1 className="title">The Blog</h1> */}
+          {<h1 className="title">-------SOLANA REDDIT------- </h1>}
           <div className="row">
 
             <article className="best-post">
@@ -102,13 +102,6 @@ export const Dashboard = () => {
                   backgroundImage: `url("https://imgs.hipertextual.com/wp-content/uploads/2021/08/reddit-2.png")`,
                 }}
               ></div>
-              <div className="best-post-content">
-                <div className="best-post-content-cat">Solana Developer <span className="dot"> </span>Blog</div>
-                <div className="best-post-content-title">
-                  SOLANA REDDIT                </div>
-                <div className="best-post-content-sub">
-                  A PROJECT FOR SOLANA BOOTCAMP                         </div>
-              </div>
             </article>
 
             <div className="all__posts">
