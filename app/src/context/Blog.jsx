@@ -68,12 +68,16 @@ export const BlogProvider = ({ children }) => {
             const postAccounts = await program.account.postAccount.all()
             setPosts(postAccounts)
             console.log(postAccounts)
+          } else {
+            // Handle the case when there's no user
+            setInitialized(true);
           }
         } catch (err) {
           console.log("No User")
-          setInitialized(false)
+          // Handle the case when there's no user
+          setInitialized(true);
         } finally {
-          setTransactionPending(true)
+
         }
       }
     }
@@ -103,7 +107,9 @@ export const BlogProvider = ({ children }) => {
       } catch (err) {
         console.log(err)
       } finally {
-        setTransactionPending(false)
+        // Handle the case when there's no user
+        setInitialized(true);
+
       }
     }
   }
@@ -142,7 +148,8 @@ export const BlogProvider = ({ children }) => {
         showModal,
         setShowModal,
         createPost,
-        posts
+        posts,
+        transactionPending,
 
       }}
     >
