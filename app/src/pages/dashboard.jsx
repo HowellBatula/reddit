@@ -13,6 +13,7 @@ export const Dashboard = () => {
   const [postTitle, setPostTitle] = useState("")
   const [postContent, setPostContent] = useState("")
   const { user, initialized, initUser, showModal, setShowModal, createPost, posts } = useBlog()
+
   const onConnect = () => {
     setConnecting(true)
     select(PhantomWalletName)
@@ -20,7 +21,7 @@ export const Dashboard = () => {
 
   useEffect(() => {
     if (user) {
-      setConnecting(false)
+      setConnecting(true)
     }
   }, [user])
 
@@ -41,27 +42,38 @@ export const Dashboard = () => {
                 alt="avatar"
                 className="w-8 h-8 rounded-full bg-gray-200 shadow ring-2 ring-indigo-400 ring-offset-2 ring-opacity-50"
               />
-              <p className=" font-bold text-sm ml-2 capitalize">
+              <p className="font-bold text-sm ml-2 capitalize">
                 {user?.name}
               </p>
               {initialized ? (
+                <div className="flex">
+                  <Button
+                    className="ml-3 mr-2"
+                    onClick={() => {
+                      setShowModal(true);
+                    }}
+                  >
+                    Create Post
+                  </Button>
+                  <Button
+                    className="ml-3 mr-2"
+                    onClick={() => {
+                      setShowModal(true);
+                    }}
+                  >
+                    Disconnect
+                  </Button>
+                </div>
+              ) : (
                 <Button
                   className="ml-3 mr-2"
                   onClick={() => {
-                    setShowModal(true)
+                    initUser();
                   }}
                 >
-                  Create Post
-                </Button>) : (<Button
-                  className="ml-3 mr-2"
-                  onClick={() => {
-                    initUser()
-                  }}
-                >
-                  Initialized User
-                </Button>)}
-
-
+                  Initialize User
+                </Button>
+              )}
             </div>
           ) : (
             <Button
@@ -76,18 +88,14 @@ export const Dashboard = () => {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
+                  {/* ... (Connect icon SVG path) */}
                 </svg>
               }
             >
               Connect
             </Button>
           )}
+
         </div>
       </header>
       <main className="dashboard-main pb-4 container flex relative">
